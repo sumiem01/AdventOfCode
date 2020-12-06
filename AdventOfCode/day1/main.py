@@ -2,15 +2,8 @@ from utils import utils
 PATH = "input1.txt"
 
 
-def clean_input(data: list) -> list:
-    new_input: list = []
-    for i in data:
-        new_input.append(int(i.replace("\n", "")))
-    return new_input
-
-
 def count_two() -> list:
-    new_input = clean_input(utils.get_data(PATH))
+    new_input = utils.clean_input(utils.get_data(PATH))
     numbers: list = []
     RANGE = len(new_input)
     for i in range(RANGE):
@@ -21,7 +14,7 @@ def count_two() -> list:
 
 
 def count_three() -> list:
-    new_input = clean_input(utils.get_data(PATH))
+    new_input = utils.clean_input(utils.get_data(PATH))
     numbers: list = []
     RANGE = len(new_input)
     for i in range(RANGE):

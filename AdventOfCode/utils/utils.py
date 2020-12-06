@@ -18,3 +18,8 @@ def clean_input(data: list) -> list:
     return new_input
 
 
+def clean_new_line_char(data: list) -> list:
+    new_input: list = []
+    for i in data:
+        new_input.append(i.replace("\n", ""))
+    return new_input

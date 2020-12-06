@@ -1,9 +1,5 @@
+from utils import utils
 PATH = "input1.txt"
-
-
-def get_data(path: str) -> list:
-    with open(path, "r") as f:
-        return f.readlines()
 
 
 def clean_input(data: list) -> list:
@@ -14,7 +10,7 @@ def clean_input(data: list) -> list:
 
 
 def count_two() -> list:
-    new_input = clean_input(get_data(PATH))
+    new_input = clean_input(utils.get_data(PATH))
     numbers: list = []
     RANGE = len(new_input)
     for i in range(RANGE):
@@ -25,7 +21,7 @@ def count_two() -> list:
 
 
 def count_three() -> list:
-    new_input = clean_input(get_data(PATH))
+    new_input = clean_input(utils.get_data(PATH))
     numbers: list = []
     RANGE = len(new_input)
     for i in range(RANGE):

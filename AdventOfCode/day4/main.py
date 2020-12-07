@@ -14,7 +14,6 @@ pid (Passport ID) - a nine-digit number, including leading zeroes.
 cid (Country ID) - ignored, missing or not.
 """
 import re
-PATH = "input4.TXT"
 
 
 def read_data(path: str) -> str:
@@ -48,70 +47,20 @@ def is_valid_without_cid(passport: str) -> bool:
         return False
 
 
-def is_valid_byr(passport: dict) -> bool:
-    return 1920 < int(passport.get('byr', 0)) < 2002
-
-
-def is_valid_iyr(passport: dict) -> bool:
-    return 2010 < int(passport.get('iyr', 0)) < 2020
-
-
-def is_valid_eyr(passport: dict) -> bool:
-    return 2020 < int(passport.get('eyr', 0)) < 2030
-
-
-def is_valid_hgt(passport: dict) -> bool:
-    if 'cm' in passport.get('hgt', '0'):
-        return 150 < int(passport.get('hgt', '0').strip("cm")) < 193
-    elif 'in' in passport.get('hgt', '0'):
-        return 59 < int(passport.get('hgt', '0').strip("in")) < 76
+def is_valid(passport: str) -> bool:
+    pattern_byr = r"byr:19[2-9][0-9]|byr:200[0-2]"  # 1920 <= valid <= 2002
+    pattern_iyr = r"iyr:201[0-9]|iyr:2020"  # 2010 <= valid <= 2020
+    pattern_eyr = r"eyr:202[0-9]|eyr:2030"  # 2020 <= valid <= 2030
+    pattern_hgt = r"hgt:1[5-8][0-9]cm|hgt:19[0-3]cm|hgt:59in|hgt:6[0-9]in|hgt:7[0-6]in"  # 150 < valid(cm) < 193 or 59 < valid(in) < 76
+    pattern_hcl = r"hcl:#[0-9a-f]{6}"
+    pattern_ecl = r"ecl:amb|ecl:blu|ecl:brn|ecl:gry|ecl:grn|ecl:hzl|ecl:oth"
+    pattern_pid = r"pid:\d+"  # all 9 digits numbers
+    if re.search(pattern_pid, passport):
+        pid_cond = len(re.search(pattern_pid, passport)[0]) == 13  # 9 + len("pid:")
     else:
-        return False
-
-
-def is_valid_hcl(passport: dict) -> bool:
-    pattern = r"^#[1-9a-zA-Z]{6,6}"
-    value = passport.get('hcl', '0')
-    result = re.match(pattern, value)
-    if bool(result) and len(value) == 7:
-        return True
-    else:
-        return False
-
-
-def is_valid_ecl(passport: dict) -> bool:
-    return passport.get('ecl', 0) in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
-
-
-def is_valid_pid(passport: dict) -> bool:
-    return passport.get('pid', 0) == 9
-
-
-def is_valid(passport: dict) -> bool:
-    """
-    byr (Birth Year) - four digits; at least 1920 and at most 2002.
-    iyr (Issue Year) - four digits; at least 2010 and at most 2020.
-    eyr (Expiration Year) - four digits; at least 2020 and at most 2030.
-    hgt (Height) - a number followed by either cm or in:
-    If cm, the number must be at least 150 and at most 193.
-    If in, the number must be at least 59 and at most 76.
-    hcl (Hair Color) - a # followed by exactly six characters 0-9 or a-f.
-    ecl (Eye Color) - exactly one of: amb blu brn gry grn hzl oth.
-    pid (Passport ID) - a nine-digit number, including leading zeroes.
-    cid (Country ID) - ignored, missing or not.
-    """
-    function_tuple = (is_valid_byr,
-                      is_valid_iyr,
-                      is_valid_eyr,
-                      is_valid_hgt,
-                      is_valid_hcl,
-                      is_valid_ecl,
-                      is_valid_pid
-                      )
-    logic_list: list = []
-    for fun in function_tuple:
-        logic_list.append(fun(passport))
-    return all(logic_list)
+        pid_cond = False
+    pattern_list: list = [pattern_byr, pattern_iyr, pattern_eyr, pattern_hgt, pattern_hcl, pattern_ecl]
+    return all([bool(re.search(pattern, passport)) for pattern in pattern_list]) and pid_cond
 
 
 def validate_passports(data: list, validate_function) -> int:
@@ -122,5 +71,7 @@ def validate_passports(data: list, validate_function) -> int:
     return counter
 
 
-data = read_data(PATH).split("\n\n")
-print(validate_passports(prepare_code_values(data), is_valid))
+if __name__ == "__main__":
+    PATH = "input4.TXT"
+    data = read_data(PATH).split("\n\n")
+    print(validate_passports(data, is_valid))

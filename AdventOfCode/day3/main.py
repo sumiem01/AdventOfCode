@@ -20,10 +20,11 @@ def count_tree(data: list, down_slope: int, right_slope: int):
     return counter
 
 
-print(count_tree(data, 1, 1))
-print(count_tree(data, 1, 3))  # correct answer = 216
-print(count_tree(data, 1, 5))
-print(count_tree(data, 1, 7))
-print(count_tree(data, 2, 1))
-multiply = count_tree(data, 1, 1) * count_tree(data, 1, 3) * count_tree(data, 1, 5) * count_tree(data, 1, 7) * count_tree(data, 2, 1)
-print(multiply)
+if __name__ == "__main__":
+    print(count_tree(data, 1, 1))
+    print(count_tree(data, 1, 3))  # correct answer = 216
+    print(count_tree(data, 1, 5))
+    print(count_tree(data, 1, 7))
+    print(count_tree(data, 2, 1))
+    multiply = count_tree(data, 1, 1) * count_tree(data, 1, 3) * count_tree(data, 1, 5) * count_tree(data, 1, 7) * count_tree(data, 2, 1)
+    print(multiply)

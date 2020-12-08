@@ -7,6 +7,11 @@ def get_data(path: str) -> list:
         return f.readlines()
 
 
+def get_raw_data(path: str):
+    with open(path, "r") as f:
+        return f.read()
+
+
 def clean_input(data: list) -> list:
     """
     Remove \n characters from elements of the list

@@ -14,6 +14,7 @@ pid (Passport ID) - a nine-digit number, including leading zeroes.
 cid (Country ID) - ignored, missing or not.
 """
 import re
+from typing import Callable
 
 
 def read_data(path: str) -> str:
@@ -63,7 +64,7 @@ def is_valid(passport: str) -> bool:
     return all([bool(re.search(pattern, passport)) for pattern in pattern_list]) and pid_cond
 
 
-def validate_passports(data: list, validate_function) -> int:
+def validate_passports(data: list, validate_function: Callable[[str], bool]) -> int:
     counter: int = 0
     for passport in data:
         if validate_function(passport):

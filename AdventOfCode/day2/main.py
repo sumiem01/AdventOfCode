@@ -1,4 +1,5 @@
 from utils import utils
+from typing import Callable
 PATH = "input2.TXT"
 
 data = utils.get_data(PATH)
@@ -39,7 +40,7 @@ def is_valid_new_policy(minimum: int, maximum: int, letter: str, password: str) 
         return False
 
 
-def validate_passwords_old_policy(data: list, validate_function) -> int:
+def validate_passwords_old_policy(data: list, validate_function: Callable[[int, int, str, str], bool]) -> int:
     counter: int = 0
     for i in data:
         if validate_function(*i):

@@ -1,4 +1,5 @@
 from utils import utils
+from typing import Callable
 
 
 def count_group_yes_answers_anyone(answers: str) -> int:
@@ -13,7 +14,7 @@ def count_group_yes_answers_everyone(answers: str) -> int:
     return len(answer_intersection)
 
 
-def count_all_groups_yes_answers(data: list, checking_function) -> int:
+def count_all_groups_yes_answers(data: list, checking_function: Callable[[str], int]) -> int:
     sum: int = 0
     for answers in data:
         sum += checking_function(answers)

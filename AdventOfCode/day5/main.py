@@ -38,9 +38,9 @@ def check_occupied_seats(data: list):
 
 
 def find_your_seat(data: list) -> int:
-    for i, seat_id in enumerate(s[:-1]):
-        if s[i] + 1 != s[i + 1]:
-            return s[i] + 1
+    for i, seat_id in enumerate(data[:-1]):
+        if data[i] + 1 != data[i + 1]:
+            return data[i] + 1
     else:
         return -1
 

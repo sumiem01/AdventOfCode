@@ -3,7 +3,7 @@ PATH = "input1.txt"
 
 
 def count_two() -> list:
-    new_input = utils.clean_input(utils.get_data(PATH))
+    new_input = utils.clean_input(utils.get_lines(PATH))
     numbers: list = []
     RANGE = len(new_input)
     for i in range(RANGE):
@@ -14,7 +14,7 @@ def count_two() -> list:
 
 
 def count_three() -> list:
-    new_input = utils.clean_input(utils.get_data(PATH))
+    new_input = utils.clean_input(utils.get_lines(PATH))
     numbers: list = []
     RANGE = len(new_input)
     for i in range(RANGE):

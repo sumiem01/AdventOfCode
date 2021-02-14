@@ -2,7 +2,7 @@ from utils import utils
 from typing import Callable
 PATH = "input2.TXT"
 
-data = utils.get_data(PATH)
+data = utils.get_lines(PATH)
 
 
 def extract_info_from_code(code: str) -> tuple:

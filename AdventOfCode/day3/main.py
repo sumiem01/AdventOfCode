@@ -1,7 +1,7 @@
 from utils import utils
 PATH = "input3.TXT"
 
-data = utils.get_data(PATH)
+data = utils.get_lines(PATH)
 data = utils.clean_new_line_char(data)
 
 

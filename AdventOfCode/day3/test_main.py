@@ -4,7 +4,7 @@ from utils import utils
 
 TEST_PATH = "input_test.TXT"
 
-data = utils.get_data(TEST_PATH)
+data = utils.get_lines(TEST_PATH)
 data = utils.clean_new_line_char(data)
 
 assert count_tree(data, 1, 1) == 2, "Wrong value"

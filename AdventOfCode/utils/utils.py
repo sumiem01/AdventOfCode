@@ -1,13 +1,14 @@
 """Useful functions for general purposes of Advent of Code"""
 
 
-def get_data(path: str) -> list:
+def get_lines(path: str) -> list:
     """Extract .txt file to variable list"""
     with open(path, "r") as f:
         return f.readlines()
 
 
 def get_raw_data(path: str):
+    """Basically open the file and read it's content"""
     with open(path, "r") as f:
         return f.read()
 

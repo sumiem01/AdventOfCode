@@ -1,5 +1,5 @@
 """--- Day 5: Binary Boarding ---"""
-from utils.utils import get_data, clean_new_line_char
+from utils.utils import get_lines, clean_new_line_char
 
 
 def change_code_str_to_binary(code: str, one: str, zero: str) -> bin:
@@ -47,7 +47,7 @@ def find_your_seat(data: list) -> int:
 
 if __name__ == "__main__":
     path = r'C:\Users\Mateusz\Python\AdventOfCode\day5\day5_input.TXT'
-    data = get_data(path)
+    data = get_lines(path)
     data = clean_new_line_char(data)
     print(check_maximum_seat_number(data))
     s = sorted(check_occupied_seats(data))
